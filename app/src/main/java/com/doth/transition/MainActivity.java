@@ -1,6 +1,7 @@
 package com.doth.transition;
 
 import android.content.Intent;
+import android.media.session.PlaybackState;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -13,11 +14,18 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+//import com.doth.transition;
+
+import android.app.Activity;
+import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {
 
     private Button buttonSegue;
     private Button toastButton;
+
+    TextView tvOutput;
+    Button btOpen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +33,24 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        tvOutput = (TextView) findViewById(R.id.tv_output);
+        btOpen = (Button) findViewById(R.id.bt_open);
+
+        btOpen.setOnClickListener(new View.OnClickListener() {
+            // ボタン押下時
+            public void onClick(View v) {
+                // ダイアログの表示
+                final CustomizedDialog dialog = CustomizedDialog.newInstance();
+                dialog.setOnOkButtonClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        tvOutput.setText(String.format("%1$,3d", dialog.getInputValue()));
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
 
         buttonSegue = (Button)findViewById(R.id.buttonSegue);
         buttonSegue.setOnClickListener(new View.OnClickListener() {
@@ -57,16 +83,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
-//    //ボタンクリック時の関数
-//    public void onClick(View v) {
-//
-//        if(v==buttonSegue){
-//            Intent intent = new Intent(this, SubActivity.class);
-//            startActivityForResult(intent, 0);
-//        }
-//
-//    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

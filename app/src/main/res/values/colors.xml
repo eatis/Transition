@@ -3,4 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!-- ボタン通常時 -->
+    <color name="button1">#404040</color>
+    <!-- ボタン押下時 -->
+    <color name="button2">#808080</color>
+    <!-- ボタン選択不可 -->
+    <color name="button3">#b0b0b0</color>
+    <!-- dialog背景色 -->
+    <color name="dialog_background">#202020</color>
 </resources>
